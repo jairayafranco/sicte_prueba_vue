@@ -20,7 +20,7 @@
 <script>
 import { defineComponent, reactive, ref } from 'vue';
 import { useQuasar } from 'quasar';
-import { saveUser, getUsers } from 'src/api/api';
+import { saveUser } from 'src/api/api';
 
 const requiredInput = [val => val && val.length > 0 || 'Campo requerido'];
 
@@ -62,21 +62,22 @@ export default defineComponent({
 
         const formValues = reactive({ ...initialState });
 
-        const onSubmit = () => {
+        const onSubmit = async () => {
             savingUser.value = true;
-            saveUser(formValues).then((response) => {
+            try {
+                const response = await saveUser(formValues);
                 $q.notify({
                     type: 'positive',
                     message: response.data.message
                 });
-                savingUser.value = false;
-            }).catch(() => {
+            } catch (error) {
                 $q.notify({
                     type: 'negative',
                     message: 'Error al guardar el usuario'
                 });
+            } finally {
                 savingUser.value = false;
-            });
+            }
         }
 
         const onReset = () => {

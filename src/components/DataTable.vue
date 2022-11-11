@@ -29,10 +29,9 @@ export default defineComponent({
     components: {},
 
     setup() {
-        onMounted(() => {
-            getUsers().then((response) => {
-                rows.value = response.data
-            });
+        onMounted(async() => {
+            const { data } = await getUsers();
+            rows.value = data;
         });
 
         return {
