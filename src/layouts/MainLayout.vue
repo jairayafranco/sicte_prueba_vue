@@ -4,7 +4,7 @@
       <q-toolbar>
 
         <q-toolbar-title>
-          Tabla de Usuarios
+          Formulario de Usuarios
         </q-toolbar-title>
 
       </q-toolbar>
