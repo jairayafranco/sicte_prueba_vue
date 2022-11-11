@@ -5,7 +5,7 @@
             <div class="formulario q-gutter-sm">
                 <q-input v-for="(input, index) in formInputs" v-bind:key="index" filled :label=input.label
                     :hint=input.hint v-model="formValues[input.model]" :type=input.type lazy-rules :disable="savingUser"
-                    :rules=requiredInput />
+                    :rules=requiredInput autocomplete="off" />
             </div>
 
             <div class="float-right">
@@ -70,6 +70,7 @@ export default defineComponent({
                     type: 'positive',
                     message: response.data.message
                 });
+                onReset();
             } catch (error) {
                 $q.notify({
                     type: 'negative',
