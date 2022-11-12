@@ -1,11 +1,11 @@
 <template>
     <div class="q-pb-xl">
 
-        <q-form @submit="onSubmit" @reset="onReset">
+        <q-form @submit="onSubmit" @reset="onReset" autocomplete="off">
             <div class="formulario q-gutter-sm">
                 <q-input v-for="(input, index) in formInputs" v-bind:key="index" filled :label=input.label
-                    :hint=input.hint v-model="formValues[input.model]" :type=input.type lazy-rules :disable="savingUser"
-                    :rules=requiredInput autocomplete="off" />
+                    :hint=input.hint v-model="formValues[input.model]" hide-hint :type=input.type lazy-rules
+                    :disable="savingUser" :rules=requiredInput />
             </div>
 
             <div class="float-right">
